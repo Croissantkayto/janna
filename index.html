@@ -1,1 +1,109 @@
-سموووووووووووو عليكككوووووووووووووووووو
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سوا — خلّصوا يومكم سوا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- شاشة الدخول -->
+<section id="auth-view" class="auth" hidden>
+  <div class="auth-card">
+    <h1 class="brand">سوا</h1>
+    <p class="muted">مهامك وعاداتك، وصحابك بيشجعوك وانت بتخلّص.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-mode="login" type="button">تسجيل دخول</button>
+      <button class="tab" data-mode="signup" type="button">حساب جديد</button>
+    </div>
+    <form id="auth-form">
+      <input id="auth-name" name="name" placeholder="اسمك" autocomplete="name" hidden>
+      <input id="auth-email" name="email" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+      <input id="auth-pass" name="password" type="password" placeholder="كلمة السر (6 حروف على الأقل)" autocomplete="current-password" minlength="6" required>
+      <p id="auth-error" class="error" role="alert"></p>
+      <button class="btn primary" id="auth-submit">دخول</button>
+    </form>
+    <button class="btn ghost" id="google-btn" type="button">المتابعة بحساب Google</button>
+  </div>
+</section>
+
+<!-- التطبيق -->
+<div id="app-view" hidden>
+  <header class="top">
+    <span class="brand sm">سوا</span>
+    <div class="top-right">
+      <span class="pts"><b id="pts">0</b> نقطة</span>
+      <button class="me" id="me-btn" type="button" aria-label="الملف الشخصي"></button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <div class="col-main">
+      <section>
+        <div class="sec-head">
+          <h2>عاداتي</h2>
+          <button class="btn small" id="add-habit-btn" type="button">+ عادة جديدة</button>
+        </div>
+        <div id="habits" class="habits"></div>
+      </section>
+
+      <section>
+        <div class="sec-head"><h2>مهام الشلة</h2></div>
+        <form id="task-form" class="task-form">
+          <input id="task-title" placeholder="أضف مهمة للكل…" required maxlength="120">
+          <select id="task-cat"></select>
+          <button class="btn primary">إضافة</button>
+        </form>
+        <div id="filters" class="chips"></div>
+        <ul id="tasks" class="tasks"></ul>
+      </section>
+    </div>
+
+    <aside class="col-side">
+      <section class="panel"><h2>الترتيب</h2><ol id="board" class="board"></ol></section>
+      <section class="panel"><h2>آخر الأخبار</h2><ul id="feed" class="feed"></ul></section>
+    </aside>
+  </main>
+</div>
+
+<!-- الملف الشخصي -->
+<dialog id="profile-dialog">
+  <form method="dialog" id="profile-form">
+    <h3>ملفي الشخصي</h3>
+    <div id="profile-preview" class="preview"></div>
+    <label>الاسم<input id="p-name" required maxlength="30"></label>
+    <label>اللقب<input id="p-nick" maxlength="24" placeholder="مثلاً: وحش القراءة"></label>
+    <label>رابط الصورة<input id="p-photo" type="url" placeholder="https://…"></label>
+    <div class="row">
+      <button class="btn primary" value="save">حفظ</button>
+      <button class="btn ghost" value="cancel" formnovalidate>إلغاء</button>
+      <button class="btn danger" id="logout-btn" type="button">خروج</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- عادة جديدة -->
+<dialog id="habit-dialog">
+  <form method="dialog" id="habit-form">
+    <h3>عادة جديدة</h3>
+    <label>اسم العادة<input id="h-title" required maxlength="50" placeholder="قراءة كتاب العادات الذرية"></label>
+    <div class="row">
+      <label>الهدف<input id="h-target" type="number" min="1" required placeholder="300"></label>
+      <label>الوحدة<input id="h-unit" required maxlength="12" placeholder="صفحة"></label>
+    </div>
+    <label>الديدلاين<input id="h-deadline" type="date" required></label>
+    <label>التصنيف<select id="h-cat"></select></label>
+    <div class="row">
+      <button class="btn primary" value="save">إنشاء</button>
+      <button class="btn ghost" value="cancel" formnovalidate>إلغاء</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="toasts" aria-live="polite"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
